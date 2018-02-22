@@ -1,0 +1,938 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+    <title>Practicapp-Recursos para la intervención social</title>
+    <meta property="og:image" content="http://practicapp.org/oie_jpg.png" />
+    <meta name="description" content="A guide to the resources available to students at UTSC" />
+    <meta name="theme-color" content="#b2ebf2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+
+    <!--Fonts and Stylesheets!-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+
+	<style>
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background: #018899;
+}
+
+.categoryIcon {
+    float: left;
+}
+
+.navbutton {
+    color: #b2ebf2;
+    background: none;
+    font-size: 22px;
+    border: none;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+body {
+    padding-top: 80px;
+    background: #00b8d4;
+    font-family: Roboto;
+    color: white;
+    overflow-x: hidden;
+}
+
+.fc-btn,
+.endpt {
+    padding: 30px;
+    /*     margin: 2.5px; */
+    font-size: 14px;
+    background: #0097a7;
+    color: white;
+    border: none;
+    margin-bottom: 7.5px;
+    break-inside: avoid-column;
+    break-inside: avoid;
+}
+
+.fc-btn:hover,
+.endpt:hover {
+    background: #006064;
+}
+
+button:focus {
+    outline: 0;
+    border: solid 2px white;
+}
+
+
+.navbutton:hover {
+    color: #4dd0e1;
+}
+
+#mmmlogo {
+    min-width: 70px;
+    width: 20%;
+    margin: 10px;
+    border-radius: 25%;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: bold;
+}
+
+.centretext {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italics {
+    font-style: italic;
+}
+
+#desc {
+    margin-bottom: 40px;
+}
+
+#translate {
+    display: none;
+    padding: 10px;
+    margin: 15px auto 5px auto;
+    text-align: center;
+    border-radius: 5px;
+    width: 200px;
+}
+
+select {
+    padding: 10px;
+    border: none;
+    background: #0097a7;
+    color: #b2ebf2;
+}
+
+.columndiv {
+    -webkit-column-count: 2; 
+    -moz-column-count: 2; 
+    column-count: 2;  
+
+    -webkit-column-gap: 10px;
+    /* Chrome, Safari, Opera */
+    -moz-column-gap: 10px;
+    /* Firefox */
+    column-gap: 10px;
+}
+
+.wide-card{
+     height: auto;
+}
+
+#socialIcons i {
+    font-size: 25px;
+    padding: 20px;
+    padding-top: 15px;
+}
+
+#socialIcons i:hover {
+    color: #006064;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+</style>
+<script>
+$(document).ready(function() {
+    (function($) {
+
+        $.fn.fc = function(animateIn, animateOut, delay) {
+            $(".fc-card").hide();
+            $("#fc-home").hide();
+            $("#fc-back").hide();
+            $("#fc-main").show();
+
+            var history = ["#fc-main"];
+
+            if (!delay || delay < 0) {
+                delay = 500;
+            }
+
+            $(".fc-btn").click(function() {
+                var parent = $(this).parent();
+                $(".fc-btn").attr("disabled", "true"); //prevent multiple clicks
+                parent.removeClass(animateIn).addClass(animateOut);
+                var nextId = "#C" + $(this).attr("id").substring(1);
+                history.push(nextId);
+
+                setTimeout(function() {
+                    parent.hide();
+                    $(nextId).addClass(animateIn).show();
+                    $(".fc-btn").removeAttr("disabled");
+                    $("#fc-home").show();
+                    $("#fc-back").show();
+                }, delay);
+            });
+
+            $("#fc-home").click(function() {
+                $("#fc-home").hide();
+                $("#fc-back").hide();
+                history = ["#fc-main"];
+                $(".fc-card").addClass(animateOut);
+                setTimeout(function() {
+                    $(".fc-card").hide();
+                    $("#fc-main").show();
+                    $(".fc-card").removeClass(animateOut).addClass(animateIn);
+                }, delay);
+            })
+
+            $("#fc-back").click(function() {
+                history.pop();
+                $(".fc-card").addClass(animateOut);
+                setTimeout(function() {
+                    $(".fc-card").hide();
+                    if (history.length > 1) {
+                        $(history[history.length - 1]).show();
+                    } else {
+                        $("#fc-main").show();
+                        $("#fc-home").hide();
+                        $("#fc-back").hide();
+                        history = ["#fc-main"];
+                    }
+                    $(".fc-card").removeClass(animateOut).addClass(animateIn);
+                }, delay);
+            })
+        }
+    }(jQuery));
+    
+    loadBootstrapClasses();
+    
+    var contrast = false;
+    $("body").fc("fadeIn", "fadeOut", 600);
+    $("#language").click(function() {
+        if ($("#translate").css("display") == "none")
+            $("#translate").show();
+        else
+            $("#translate").hide();
+
+    })
+    $("#contrast").click(toggleContrast);
+    $("#map").click(function(){
+        window.location.href="";
+    })
+
+    function toggleContrast() {
+        if (!contrast) {
+            contrast = true;
+            $("body").css({
+                'background': 'black'
+            });
+            $(".fc-card").css({
+                'color': '#FFDA00'
+            });
+            $(".fc-btn").css({
+                'background': '#FFDA00',
+                'color': 'black'
+            });
+            $(".endpt").css({
+                'background': '#FFDA00',
+                'color': 'black'
+            });
+            $("nav").css({
+                'background': '#FFDA00'
+            });
+            $(".navbutton").css({
+                'color': 'black'
+            });
+            $("hr").css({
+                'border-color': '#FFDA00'
+            });
+            $("select").css({
+                'background': '#FFDA00',
+                'color': 'black'
+            });
+        } else {
+            contrast = false;
+            $("body").css({
+                'background': '#00b8d4'
+            });
+            $(".fc-card").css({
+                'color': 'white'
+            });
+            $(".fc-btn").css({
+                'background': '#0097a7',
+                'color': 'white'
+            });
+            $(".endpt").css({
+                'background': '#0097a7',
+                'color': 'white'
+            });
+            $("nav").css({
+                'background': '#009aad'
+            });
+            $(".navbutton").css({
+                'color': '#b2ebf2'
+            });
+            $("hr").css({
+                'border-color': '#0097a7'            });
+            $("select").css({
+                'background': '#0097a7',
+                'color': '#b2ebf2'
+            });
+        }
+    }
+    function loadBootstrapClasses(){
+        $(".fc-card").addClass("col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3");
+        $(".fc-btn").addClass("col-xs-12");
+        $(".endpt").addClass("col-xs-12");
+    }
+})</script>
+</head>
+
+
+
+
+
+<body>
+  
+    <nav>  
+        <button title="Atrás" class="navbutton" id="fc-back"><i class="fa fa-arrow-circle-o-left"></i></button>
+        <button title="Inicio" class="navbutton" id="fc-home"><i class="fa fa-home"></i></button>
+        
+        
+        <br>
+    </nav>
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+<div class = "row" cid="main">
+    <div class="fc-card animated fadeIn" id="fc-main">
+        <div class="centretext">
+            <img id="mmmlogo" src="http://practicapp.org/lgapp.jpg" >
+          <div id="desc"><a href="#">  </a></br>Guía práctica de los principales beneficios sociales disponibles para las personas en Chile.<br>Explora cada uno de los programas estatales según las siguientes categorías:</br>
+            </div>
+            
+        </div>
+        <br><br>
+        <button class="fc-btn" id="BFin"><i class=""></i> Familias</button>
+        <br><button class="fc-btn" id="BAca"><i class=""></i> Pensionados </button>
+        <br><button class="fc-btn" id="BInt"><i class=""></i> Trabajadores</button>
+       
+        <br/><br/>
+        <div class="row centretext">
+            &nbsp;
+            <div id="socialIcons">
+                <div>
+                    <a href="mailto:info@practicapp.org"><i class="socialIcon fa fa-envelope"></i></a>
+                    <a target="blank" href="http://practicapp.org"> <i class="socialIcon fa fa-keyboard-o"></i></a>
+                    <a target="blank" href="https://www.facebook.com/OddsCl/"><i class="socialIcon fa fa-facebook-square"></i></a>
+                </div>
+                <div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Financial-->
+    <div class="fc-card animated" id="CFin">
+        <button class="fc-btn" id="BFin2A">Aporte Familiar Permanente</button>
+        <br><button class="fc-btn" id="BFin2B">
+      Subsidio Familiar </button>
+        <br><button class="fc-btn" id="BFin2C">Subsidio Familiar Mujer Embarazada</button>
+        <br><button class="fc-btn" id="BFin2D">Subsidio Familiar para Personas con Certificación de Invalidez y con
+Discapacidad Mental</button>
+        <br><button class="fc-btn" id="BFin2E">Subsidio Menores de 18 años con Discapacidad Mental</button>
+        
+        
+        <br><button class="fc-btn" id="BFin2F">Asignación Familiar</button>
+        <br><button class="fc-btn" id="BFin2G">Asignación Maternal</button>
+       <br><button class="fc-btn" id="BFin2H">Pensión Básica Solidaria de Invalidez</button>
+      <br><button class="fc-btn" id="BFin2I">Aporte Previsional Solidario de Invalidez</button>
+      <br><button class="fc-btn" id="BFin2J">Asignación por Muerte</button>
+      <br><button class="fc-btn" id="BFin2K">Subsidio al
+pago del consumo de Agua Potable
+</button>
+    </div>
+
+    <div class="fc-card animated" id="CFin2A">
+      El aporte familiar permanente es una ayuda económica para las familias de menores ingresos, que forma parte del Sistema de Protección Social. Los pagos son administrados por el Instituto de Previsión Social, IPS. Este beneficio fue establecido como permanente y lo entrega el Estado en marzo de cada año a las familias chilenas. 
+      El Aporte Familiar Permanente se paga una vez al año a las familias que, al 31 de diciembre anterior, sean beneficiarias de Asignación Familiar, Asignación Maternal, Subsidio Familiar, participen en Chile Solidario o sean usuarias del Subsistema de Seguridades y Oportunidades (Ingreso Ético Familiar).
+     
+El monto del Aporte es de $45.212 por "carga familiar" o por causante de Subsidio Familiar. También se paga el mismo monto por familia perteneciente a Chile Solidario o al Subsistema de Seguridades y Oportunidades (Ingreso Ético Familiar).
+        <br><br>
+        <button class="endpt" onclick="window.open('https://www.aportefamiliar.cl/');">Información oficial </button>
+  </div>
+
+    <div class="fc-card animated" id="CFin2B">
+       También conocido como Subsidio Único Familiar (SUF), está destinado a personas de escasos recursos que no pueden acceder al beneficio de Asignación Familiar o Maternal, porque no son trabajadores afiliados a un sistema previsional.
+
+El monto del Subsidio Familiar es de $11.337 por carga familiar. No obstante, el monto que generan los causantes inválidos es el doble (22 mil 674 pesos).
+
+Las personas que dan derecho a percibir el Subsidio Familiar (causantes) pueden acceder a prestaciones médicas (preventivas y curativas) y odontológicas gratuitas.
+
+El Subsidio Familiar es incompatible con:
+
+Los demás beneficios del Sistema Único de Prestaciones Familiares (asignaciones familiares).
+El goce de la Pensión Básica Solidaria (PBS).
+El subsidio de discapacidad mental.
+El Subsidio Familiar pertenece al Sistema de Prestaciones Familiares.
+        <br><br><button class="endpt" onclick="window.open('https://www.chileatiende.gob.cl/fichas/36386-que-es-la-asignacion-familiar-y-el-subsidio-familiar-suf')">Información oficial</button><br>
+    </div>
+
+    <div class="fc-card animated" id="CFin2C">
+        Es un aporte monetario mensual que se paga por todo el período de embarazo a
+mujeres de escasos recursos (causantes) que no reciben Asignación Maternal,
+quienes también tienen derecho a prestaciones médicas, preventivas y
+curativas, y odontológicas gratuitas en los Servicios de Salud.
+Las mujeres que reciben Subsidio Familiar (SUF) Mujer Embarazada no pueden
+recibir beneficios como la Asignación Familiar o Maternal, Pensión Básica
+Solidaria y/o el Subsidio de Discapacidad Mental para personas menores de 18
+años. En caso de ser causante de Asignación Familiar y de Subsidio Familiar
+(SUF), deberá optar por uno de ellos.
+La mujer embarazada que sea causante sólo dará derecho a un subsidio, aun
+cuando pueda ser invocada por más de un beneficiario.
+El beneficio se extingue si no es cobrado durante 6 meses continuados.
+Una vez que el niño o niña nace y antes de que cumpla 3 meses, será causante
+de Subsidio Familiar (SUF) al Recién Nacido, sólo en el caso que su madre haya
+sido beneficiada con el SUF Mujer Embarazada. Posteriormente, queda inscrito
+el niño(a) como causante del SUF. 
+        <br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')" >Información oficial</button><br>
+    </div>
+
+    <div class="fc-card animated" id="CFin2D">
+       Es un aporte monetario mensual, también conocido como “SUF duplo”, para
+personas de escasos recursos con familiares con certificación de invalidez y/o
+personas con discapacidad mental (causantes), que no pueden acceder al
+beneficio de Asignación Familiar. Los causantes de este Subsidio Familiar
+también tienen derecho a prestaciones médicas, preventivas y curativas, y
+odontológicas gratuitas en los Servicios de Salud.
+Es incompatible con la Asignación Familiar, con la Pensión Básica Solidaria de
+Invalidez (PBSI), y con el Subsidio de Discapacidad Mental para personas
+menores de 18 años. Si una persona pudiera ser causante de Asignación Familiar
+y de este Subsidio Familiar, deberá optar por uno de ellos.
+La persona causante sólo dará derecho a un subsidio, aun cuando pueda ser
+invocado por más de un beneficiario.
+El beneficio dura tres años contados desde el mes en que se comenzó a recibir.
+Los alcaldes tienen la facultad de revisarlo, y extinguirlo si han dejado de
+cumplirse los requisitos que permitieron su otorgamiento. Se puede renovar, si
+se mantienen los requisitos exigidos, un mes antes del vencimiento.
+El beneficio se extingue si no es cobrado durante 6 meses continuados.
+        <br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button><br><br> 
+        <!--         <br/><br/>
+        By systematically identifying academic and character strengths, the Flourish program will help you to learn effective stress management, improve your academic performance and boost your overall well-being.
+        <br><br><button class="endpt" onclick="window.open('https://www.utsc.utoronto.ca/projects/flourish/','_blank')">UTSC Flourish</button> -->
+
+    </div>
+
+    <div class="fc-card animated" id="CFin2E">
+       Es un aporte monetario mensual que se entrega a niños, niñas y adolescentes
+menores de 18 años, con discapacidad mental, y pertenecientes a familias
+vulnerables o carentes de recursos.
+La entrega de este subsidio da derecho a los niños, niñas y adolescentes a recibir
+atención médica gratuita en consultorios y hospitales del Servicio Nacional de
+Salud.
+Los beneficiarios de este subsidio también pueden ser beneficiarios de
+Asignación Familiar respecto de sus descendientes, pero no pueden recibir ellos
+mismos la Asignación Familiar.
+Este subsidio es incompatible con cualquier otro subsidio o tipo de pensión, y se
+termina por las siguientes razones:
+Cumplimiento de 18 años de edad.
+Fallecimiento del beneficiario.
+Dejar de cumplir los requisitos exigidos para su otorgamiento.
+Proporcionar los antecedentes, relacionados con el beneficio. 
+        <br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button><br><br> 
+    </div>
+
+    <div class="fc-card animated" id="CFin2F">
+       Es un aporte monetario mensual que varía de acuerdo con el sueldo de los
+trabajadores o pensionados, causado por los integrantes de sus familias que son
+debidamente reconocidos como cargas legales.
+El beneficio se mantiene vigente en la medida que los trabajadores o
+pensionados sigan cumpliendo los requisitos establecidos.
+Las cargas sólo dan derecho a una asignación familiar, aun cuando exista más de
+un beneficiario que pueda solicitar el pago correspondiente.
+La Asignación Familiar es incompatible con el Subsidio Familiar (SUF). Asimismo,
+los beneficiarios de Pensiones Básicas Solidarias no pueden ser causantes de
+Asignación Familiar, es decir, no pueden ser invocados por otra persona como
+causante que vive a sus expensas.
+El beneficio se paga hasta el último día del mes en que se mantenga la calidad de
+carga. Sin embargo, tratándose de los hijos(as), se pagará hasta el 31 de
+diciembre del año en que cumplan los 18 años de edad o 24, según corresponda. <br><br>
+        <button class="endpt" onclick="window.open('http://scsu.ca/taxclinic/','_blank')">Información oficial</button>
+    </div>
+
+    <div class="fc-card animated" id="CFin2G">
+      Es un aporte monetario mensual que reciben las trabajadoras, dependientes o
+independientes, afiliadas a un régimen previsional, y también los trabajadores cuya
+esposa embarazada está reconocida como carga familiar, que se les paga por todo
+el período del embarazo.
+Sólo se paga una Asignación Maternal, aún en el caso que el parto fuera múltiple.
+No tienen derecho a Asignación Maternal las pensionadas y cónyuges embarazadas
+de pensionados. <br><br>
+        <button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+        
+    </div>
+<div class="fc-card animated" id="CFin2H">
+     Es un aporte monetario mensual para personas entre 18 y menores de 65 años
+de edad declaradas con invalidez, a consecuencia de enfermedad o
+debilitamiento de sus fuerzas físicas o intelectuales, sufriendo un menoscabo
+permanente de su capacidad de trabajo, y que no tienen derecho a pensión en
+algún régimen previsional, ya sea como titulares o beneficiarios de una pensión
+de sobrevivencia.
+Las personas beneficiarias recibirán esta pensión hasta el último día del mes en
+que cumplan 65 años. A contar de esa fecha podrán acceder automáticamente
+a la Pensión Básica Solidaria de Vejez (PBSV), si cumplen los requisitos.
+El beneficio puede ser suspendido si éste no es cobrado durante 6 meses; o si el
+Instituto de Previsión Social (IPS) solicita antecedentes, pero no son entregados
+dentro de los 3 meses siguientes.  <br><br>
+        <button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+  </div>
+
+<div class="fc-card animated" id="CFin2I">
+     Es un aporte monetario mensual que busca apoyar a las personas de menores
+ingresos que reciben pensiones de invalidez de bajo monto.
+El Aporte Previsional Solidario de Invalidez (APSI) será entregado hasta el último
+día del mes en que el beneficiario cumpla 65 años de edad. A contar de esa
+fecha, accede automáticamente al Aporte Previsional Solidario de Vejez (APSV). 
+ <br><br>
+        <button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+  
+  
+  
+    </div>
+
+<div class="fc-card animated" id="CFin2J">
+     Es un aporte monetario que se paga por una sola vez, que busca ayudar a solventar los
+gastos funerarios por el fallecimiento del causante de esta asignación. Para los beneficiarios de PBS, corresponde a $510.888 (valor 2017), monto equivalente a
+tres Ingresos Mínimos Mensuales para fines no remuneracionales. En el caso de los
+beneficiarios de APS, se establece el derecho a 15 UF, independiente de que el saldo en su
+cuenta de la AFP sea menor a este monto.  
+ <br><br>
+        <button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+  
+  
+  
+    </div>
+  <div class="fc-card animated" id="CFin2K">
+    Es un descuento en la cuenta mensual de suministro del servicio de agua potable,
+alcantarillado y tratamiento de aguas servidas. Tiene una duración de 3 años, y se
+extingue también si el hogar posee tres cuentas sucesivas impagas, si hay cambio
+de domicilio sin aviso, y/o cambio en la situación socioeconómica del hogar.  
+ <br><br>
+        <button class="endpt" onclick="window.open('http://www.ministeriodesarrollosocial.gob.cl/')">Información oficial</button>
+  
+  
+  
+    </div>
+    <div class="fc-card animated" id="CFin3A">
+        <div class="centretext">You’re covered thanks to APUS!</div>
+        <br><button class="endpt" onclick="window.open('http://apus.ca/health-dental-plan/','_blank')">Learn more</button>
+    </div>
+    <div class="fc-card animated" id="CFin3B">
+        <div class="centretext">You’re covered thanks to SCSU!</div>
+        <br><button class="endpt" onclick="window.open('http://www.scsu.ca/services/student-services/health-dental-plan/','_blank')">Learn more</button>
+    </div>
+
+    <!-- International Students -->
+    <div class="fc-card animated" id="CInt">
+      
+        <button class="fc-btn" id="BInt2A">Bono al Trabajo de la Mujer</button>
+      
+      
+        <br><button class="fc-btn" id="BInt2B">Subsidio al Empleo Joven</button>
+        <br><button class="fc-btn" id="BInt2C">Subsidio Previsional a los Trabajadores Jóvenes</button>
+        
+    </div>
+
+    <div class="fc-card animated" id="CInt2A">
+       Es un aporte monetario anual que busca premiar el esfuerzo de trabajadoras
+vulnerables. Además, como una forma de incentivar la contratación de estas
+mujeres, también se le entrega un aporte al empleador.
+La trabajadora podrá recibir este beneficio durante cuatro años continuos,
+mientras que cada empleador podrá recibir el subsidio por 24 meses.
+Es incompatible con el Subsidio al Empleo Joven y con cualquier otro programa
+estatal de generación de empleo.
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.bonotrabajomujer.cl/');">Información oficial</button>
+    </div>
+
+    <div class="fc-card animated" id="CInt2B">
+        Es un aporte monetario que se entrega a los jóvenes para mejorar sus sueldos,
+apoyando además a sus empleadores.
+El Subsidio al Empleo Joven (SEJ) se mantiene en la medida que el beneficiario
+cumpla todos los requisitos, y hasta el último día del mes en que el trabajador
+tenga 24 años de edad, sin perjuicio de los plazos adicionales a los que puede
+acceder.
+El SEJ se extinguirá el último día del mes en que el trabajador cumpla 21 años
+de edad, si a esa fecha no ha obtenido la licencia de educación media. Si con
+posterioridad el trabajador obtiene esta licencia, podrá solicitar el SEJ, siempre
+que cumpla los demás requisitos
+        <br><br><button class="endpt" onclick="window.open('http://www.subsidioempleojoven.cl/')">Información oficial</button><br>
+    </div>
+
+    <div class="fc-card animated" id="CInt2C">
+        Es un aporte monetario mensual que busca mejorar las condiciones previsionales de los
+trabajadores jóvenes. Además, como una forma de incentivar la contratación de estas
+jóvenes, también se le entrega un aporte al empleador.
+Este subsidio es incompatible con el Seguro de Invalidez y Sobrevivencia (este último
+debe ser pagado por el trabajador, en caso de que acceda a este subsidio).
+Si el sueldo sube por sobre 1,5 Ingresos Mínimos Mensuales antes del 13° mes de recibir
+el beneficio, lo perderá. Lo mismo respecto de si su sueldo aumenta por sobre los 2
+Ingresos Mínimos Mensuales.<br><br>
+        <button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+    </div>
+
+    <div class="fc-card animated" id="CInt2D">
+        Conversation Community is a peer-to-peer, non-academic service for students who wish to practice their conversational English while experiencing diverse cultural aspects of Toronto.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/conversation-community','_blank')">Department of Student Life - Conversation Community</button>
+        <br><br> Communication Café is one of the most popular programs of the English Language Development Centre. Cafés are welcoming, dynamic workshops with games and interactive activities specially designed to help you improve your academic and oral
+        communication skills.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/eld/communication-caf%C3%A9','_blank')">ELDC - Communication Café</button><br><br> Residence Life Staff (full-time and student-staff) are available to support students,
+        including in crisis after-hours; they can provide personal support and are aware of resources to connect students to other support networks<br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/~residences/index.html','_blank')">Student Housing + Residence Life</button><br><br>
+    </div>
+
+    <div class="fc-card animated" id="CInt2E">
+        <button class="fc-btn" id="BInt3A">I need basic health insurance</button>
+        <button class="fc-btn" id="BInt3B">It’s before the 10th day of the month when my UHIP coverage starts</button>
+        <button class="fc-btn" id="BInt3C">I need extended health insurance (eye exams, dental, prescriptions, massages, travel)</button>
+        <br><br> Still unsure about your Health Insurance status? Visit Health & Wellness’ page on Health Insurance or ask one of the staff at the front desk at SL-270 (Student Centre)<br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/hwc/health-insurance','_blank')">Health Insurance: Health & Wellness</button>
+    </div>
+
+    <div class="fc-card animated" id="CInt2F">
+        Good Food Boxes are volunteer packed with fresh, high-quality, culturally appropriate vegetables and fruits. With the box menu changing weekly, each Good Food Box presents a convenient and affordable way to eat good healthy food.<br/><br/>
+        <button class="endpt" onclick="window.open('http://foodshare.net/program/goodfoodbox/','_blank')">Good Food Box</button><br/><br/> TCard+ is a new way to pay using your existing official University of Toronto Identification Card (TCard). Your
+        TCard will be accepted as a form of payment at food outlets, vending machines, laundry machines, printers, photocopiers and academic departments across UTSC as well as the UTSC Bookstore.<br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/tcardplus/welcome','_blank')">TCard+</button>
+    </div>
+
+    <div class="fc-card animated" id="CInt3A">
+        <div class="centretext">You’re covered thanks to UHIP!</div>
+        <br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/uhip','_blank')">Learn more</button>
+    </div>
+
+    <div class="fc-card animated" id="CInt3B">
+        The International Student Centre can help you with setting up a bridge period before the start of your coverage.<br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/transition-advising','_blank')">Learn more</button>
+    </div>
+
+    <div class="fc-card animated columndiv" id="CInt3C">
+        <div class="centretext">If you’re a full-time international student, you’re also covered by the SCSU health plan!</div><br>
+        <button class="endpt" onclick="window.open('http://www.scsu.ca/services/student-services/health-dental-plan/','_blank')">Learn more</button>
+    </div>
+
+    <!--Academic!-->
+    <div class="fc-card animated" id="CAca">
+        <button class="fc-btn" id="BAca2A">Pensión Básica Solidaria de Vejez</button>
+        <br/><button class="fc-btn" id="BAca2B">Aporte Previsional Solidario de Vejez</button>
+        <br/><button class="fc-btn" id="BAca2C">Bono
+Invierno</button>
+        <br/><button class="fc-btn" id="BAca2D">Bono por
+Hijo</button>
+        <br/><button class="fc-btn" id="BAca2E">Bono Bodas de Oro</button>
+        <br/>
+        
+    </div>
+
+    <div class="fc-card animated" id="CAca2A">
+                    <br> Es un aporte monetario mensual para personas de 65 años y más que no tengan
+derecho a una pensión en algún régimen previsional. El beneficio se mantendrá
+vigente mientras el beneficiario cumpla los requisitos y no se ausente del país
+por un período de 90 días o más, durante el año-calendario (enero a diciembre).
+La Pensión Básica Solidaria de Vejez (PBSV) es compatible con las pensiones de
+gracia, pensiones por Ley Rettig y Ley Valech, y pensiones de exonerados,
+siempre que éstas sean inferiores a la PBS.
+<br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">
+        <br>Información oficial</button>           
+    </div>
+
+    <div class="fc-card animated" id="CAca2B">
+       
+            <br> Es un aporte monetario mensual que busca apoyar a las personas de menores
+ingresos que cotizaron en AFP, mejorando o complementando las pensiones de
+vejez que reciben, aumentando el monto de la pensión final.
+Mientras los beneficiarios cumplan los requisitos establecidos, estará vigente el
+Aporte Previsional Solidario de Vejez (APSV). 
+<br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">
+        <br>Información oficial</button>           
+    </div>
+
+    <div class="fc-card animated" id="CAca2C">
+        Es un aporte monetario que se entrega por una sola vez, sin necesidad de
+postular, durante el mes de mayo, a los pensionados y pensionadas de escasos
+recursos, para solventar los mayores gastos que involucra el período de invierno.
+Quienes reciben más de una pensión tendrán derecho a un Bono Invierno
+siempre que la suma de esas pensiones sea igual o menor al valor de una
+Pensión Mínima de Vejez para mayores de 75 años, a la fecha del pago del
+beneficio.
+        <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+        
+    </div>
+
+    <div class="fc-card animated" id="CAca2D">
+        Es un aporte monetario que se deposita en la cuenta de capitalización individual
+de las mujeres por cada hijo(a) nacido vivo o adoptado, que busca incrementar
+el monto de su pensión.
+El beneficio es irrevocable, es decir, una vez adjudicado no se puede renunciar a
+él. Antes de solicitarlo, infórmese sobre los efectos previsionales que el acceso
+a este Bono puede generar.
+        <br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+    </div>
+
+    <div class="fc-card animated" id="CAca2E">
+        Es un aporte monetario, que se entrega por una sola vez a todos los cónyuges y
+personas viudas que demuestren 50 años o más de matrimonio.
+Una vez que el matrimonio cumple su 50° aniversario, tiene plazo de un año
+para realizar el trámite. Si el bono no es cobrado dentro de un plazo de seis
+meses luego de haber sido emitido, se entenderá como una renuncia al
+beneficio
+        <br><br><button class="endpt" onclick="window.open('http://www.ips.gob.cl/servlet/internet/inicio')">Información oficial</button>
+    </div>
+
+    <div class="fc-card animated" id="CAca2F">
+        Check your course syllabus and email your Teaching Assistant (TA) if your course has one
+        <br> Contact your respective Departmental Student Association (DSA) as many offer essay or writing support.<br><br>
+        <button class="endpt" onclick="window.open('http://www.scsu.ca/partners/dsa/','_blank')">Departmental Student Association</button>
+        <br><br> Check out the Writing Centre’s Writers’ Space, a regular drop-in writing session where students give and receive help with their writing.<br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/twc/writers-space','_blank')">Writers’ Space</button>
+        <br><br> The Writing Centre supports student learning at any stage in the writing process, from planning an outline to polishing a final draft. We help all UTSC students: undergraduate and graduate students from every discipline. The Writing Centre
+        not only allows for bookable appointments via Intranet, but also for drop-in sessions from 10am to noon.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/twc/','_blank')">The Writing Centre</button>
+    </div>
+
+    <div class="fc-card animated" id="CAca2G">
+        The Math and Stats Learning Centre offers in-person tutoring, drop-in support, virtual tutoring, and some amazing new online modules for Calculus students.
+        <br><br><button class="endpt" onclick="window.open('http://utsc.utoronto.ca/mslc/','_blank')">Math and Stats Learning Centre</button>
+        <br/><br/> Contact your program's liaison librarian for some friendly and helpful research advice!
+        <br><br><button class="endpt" onclick="window.open('https://utsc.library.utoronto.ca/librarians','_blank')">Library</button>
+
+    </div>
+
+    <div class="fc-card animated" id="CAca2H">
+        Checkout this webpage of Resume tips and tricks, compiled by the Academic Advising & Career Centre<br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/resumes','_blank')">Resume tips and tricks</button>
+        <br/><br/> Book an appointment with a Career Counsellor or a Peer Coach to review your resume and help with the career process<br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/career-employment-appointments','_blank')">Career and Employment appointments</button>
+        <br/><br/> Co-Op Student Association has weekly drop-in hours to help with peer guidance on things like resume writing, interview tips, and more!<br/><br/>
+        <button class="endpt" onclick="window.open('http://utcsa.ca','_blank')">Co-op Students Association</button>
+    </div>
+
+    <div class="fc-card animated" id="CAca2I">
+        The official UTSC Calendar, created by the Registrar's Office, is your go-to source for official information related to your program, pre-requisites, and degree. <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/~registrar/calendars/calendar/','_blank')">UTSC Calendar</button><br/><br/> The University of Toronto's Official Course Finder tool will help you filter courses by breadth
+        requirements, see estimated course enrolment numbers, and provide a snapshot of all of the courses offered, among other things. <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.rosi.utoronto.ca/course_finder.php','_blank')">Course finder</button><br/><br/> For degree planning, the University of Toronto's Degree Explorer tool is invaluable in helping you review your
+        academic history, view your degree requirements, or to determine how future course choices might help you meet your requirements. <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.rosi.utoronto.ca/degree_explorer.php','_blank')">Degree Explorer</button><br/><br/> Trying to develop an academic plan? Need some advice? Discuss your courses, program(s) and degree requirements
+        with an Academic & Learning Strategist. Appointments are available on a booked or drop-in basis. <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/academic-advising-study-skills-appointments','_blank')">Academic Advising & Career Centre</button><br/><br/> Have questions or concerns about satisfying your program
+        requirements? There are knowledgeable staff and faculty available to assist you in navigating your academic program(s). <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/registrar/program-advisors','_blank')">Program Advisors/Supervisors</button><br/><br/>
+
+
+    </div>
+
+
+    <!--Personal!-->
+    <div class="fc-card wide-card animated" id="CPerHS">
+
+        <br><button class="fc-btn" id="BPer2K">I have unhealthy habits (smoking, self-harm, eating etc.)</button>
+        <br><button class="fc-btn" id="BPer2B">I feel threatened or unsafe at home or on campus</button>
+        <br><button class="fc-btn" id="BPer2E">I need immediate help for myself or for someone I am concerned about</button>
+        <br><button class="fc-btn" id="BPer2J">I think I have a disability. Are there services on campus for me?</button
+        <br><button class="fc-btn" id="BPer2K">I am worried about my health or not feeling well. Is there a doctor or nurse on campus I can see?</button>
+        <br><button class="fc-btn" id="BFin2D">Not being able to afford school is affecting my quality of life</button>
+
+    </div>
+
+    <div class="fc-card wide-card animated" id="CPerIC">
+        <br><button class="fc-btn" id="BFin2D">I have family/relationship problems, or feel excluded/isolated</button>
+        <br><button class="fc-btn" id="BPer2A">I want a safe drop-in space</button>
+        <br><button class="fc-btn" id="BPer2C">I’m the first in my family to go to university in Canada. Are there any resources specific for me?</button>
+        <br><button class="fc-btn" id="BPer2D">I do not have a home to stay in, or I am far from my home</button>
+        <br><button class="fc-btn" id="BPer2F">I’m unhappy with my fitness level. What athletic programming does UTSC offer?</button>
+        <br><button class="fc-btn" id="BPer2G">I'm looking for a spiritual community</button>
+        <br><button class="fc-btn" id="BPer2H">I want to be more involved around the community and my campus</button>
+        <br><button class="fc-btn" id="BPer2I">I'm having trouble with my transition from high school or another university to UTSC</button>
+        <br><button class="fc-btn" id="BPer2M">I am looking for a community and/or support related to my sexual expression and identity</button>
+        <br><button class="fc-btn" id="BPer2L">I’m worried about my transition to employment or graduate school after I finish my undergrad at UTSC</button>
+    </div>
+
+    <div class="fc-card animated" id="CPer">
+        <button class="fc-btn" id="BPerHS">Health & Safety</button><br/>
+
+        <button class="fc-btn" id="BPerIC">Identity & Community</button><br/>
+
+    </div>
+
+    <div class="fc-card animated" id="CPer2A">
+        Check out safe spaces like SC:OUT (BV334), Women & Trans* Centre (SL224), Racialized Student Committee
+        <br><br><button class="endpt" onclick="">SC:OUT (BV334)</button>
+        <br><br><button class="endpt" onclick="window.open('http://utscwtc.blogspot.ca/','_blank')">Women and Trans* Centre</button><br><br> The University of Toronto Scarborough Equity & Diversity Office (BV536) serves faculty, staff and students at
+        UTSC. In cooperation with its campus partners, the EDO promotes an equitable and inclusive campus community, free from discrimination or harassment.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/edo/contact','_blank')">Equity & Diversity Office</button><br><br> The Residence Centre is a safe drop-in space with advisors who can offer you support.<br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/~residences/index.html','_blank')">Residence Centre</button><br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/utsc-chaplains','_blank')">UTSC Chaplains (BV335)</button>
+        <br/><br/> Cat Criger is an Aboriginal Elder, Traditional Teacher and Mentor from the First Nations People. He is Cayuga (Guyohkohnyoh), Turtle Clan of the Six Nations Haudenosaunee or People of the Longhouse.
+        <br/><br/>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/indigenous-elder-utsc','_blank')">Indigenous Elder at UTSC</button>
+
+
+    </div>
+
+    <div class="fc-card animated" id="CPer2B">
+        The Community Safety Office responds to students, staff, and faculty members of the University of Toronto community who have personal safety concerns.
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.communitysafety.utoronto.ca/about-us.htm','_blank')">U of T Community Service Police</button>
+        <br><br> The University of Toronto Scarborough Campus Community Police Services has, as its primary responsibility, the safety and security of the University community. All officers are sworn special constables and act under the authority of the
+        Ontario Police Services Act to enforce federal and provincial statutes on University of Toronto property. UTSC Campus Community Police coordinate community relations programs, provide speakers, answer inquiries on matters of law enforcement, advise
+        on personal safety and security and other related topics.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/police/welcome','_blank')">UTSC Campus Community Police</button><br><br> Browse this list of Safety Programs and Services housed at the University of Toronto and contact
+        the right one for your need<br><br>
+        <button class="endpt" onclick="window.open('http://safety.utoronto.ca/safety-programs-services/','_blank')">Safety Programs & Services </button><br><br> Residence Life provides students with access to emergency or short-term housing in situations
+        related to safety<br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/~residences/index.html','_blank')">Student Housing + Residence Life</button>
+
+    </div>
+
+    <div class="fc-card animated" id="CPer2C">
+        The First Generation program offers first-year, first generation students with support when transitioning into university. Students attend academic and co-curricular programming led by upper year students to enhance their academic success.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/first-generation-program','_blank')">First Generation Mentorship Program</button>
+    </div>
+
+    <div class="fc-card animated" id="CPer2D">
+        Residence Life provides students with access to emergency or short-term housing in situations related to safety<br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/~residences/index.html','_blank')">Student Housing + Residence Life</button><br><br> Finding and maintaining suitable housing is a key part of your personal and academic success.
+        Housing Services offers the information, resources and support you need to meet your housing goals.
+        <br><br>
+        <button class="endpt" onclick="window.open('https://www.studentlife.utoronto.ca/hs', '_blank')">University of Toronto Housing Services</button>
+    </div>
+    <div class="fc-card animated" id="CPer2E">
+        Good2Talk is a free, confidential and anonymous helpline providing professional counselling and information and referrals for mental health, addictions and well-being to post-secondary students in Ontario, 24/7/365.
+        <br><br><button class="endpt" onclick="window.open('http://www.good2talk.ca/','_blank')">Good2Talk</button><br><br> The Health & Wellness Centre has health care providers who provide medical, nursing, counselling, health promotion and education
+        services to University of Toronto Scarborough students. You can access these services even if you’ve opted out of SCSU Health & Dental Insurance as long as you have other health coverage, such as OHIP or UHIP!!
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/hwc/','_blank')">Health & Wellness Centre</button><br><br> The University of Toronto Scarborough Campus Community Police Services has, as its primary responsibility,
+        the safety and security of the University community. All officers are sworn special constables and act under the authority of the Ontario Police Services Act to enforce federal and provincial statutes on University of Toronto property. UTSC Campus
+        Community Police coordinate community relations programs, provide speakers, answer inquiries on matters of law enforcement, advise on personal safety and security and other related topics.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/police/welcome','_blank')">UTSC Campus Community Police</button><br>
+    </div>
+
+    <div class="fc-card animated" id="CPer2F">
+        Looking to try a new sport or activity?&nbsp;Don't know where to start your fitness?<br> The Athletics and Recreation Centre at UTSC is one of the hubs of activity on Campus and a gathering place for those pursuing a healthy active lifestyle.
+        It strives to create a respectful and inclusive environment that promotes opportunity and overall well-being through physical activity.
+        <br><br><button class="endpt" onclick="window.open('http://utsc.utoronto.ca/athletics/physical-literacy/','_blank')">UTSC Athletics and Recreation</button>
+    </div>
+
+
+    <div class="fc-card animated" id="CPer2G">
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/utsc-chaplains','_blank')">UTSC Chaplains</button>
+    </div>
+
+    <div class="fc-card animated" id="CPer2H">
+        Browse opportunities listed in the Volunteer Network Program, offered in collaboration with the SCSU<br><br><button class="endpt" onclick="window.open('http://scsu.ca/vnp/','_blank')">Volunteer Network Program</button><br><br> Login with your
+        UTORid on the Career Learning Network (CLN) and click the “Volunteer” Category<br><br>
+        <button class="endpt" onclick="window.open('https://cln.utoronto.ca/','_blank')">Career Learning Network</button>
+        <br><br> See if there's a club that interests you! Here is a full list of clubs registered under the Department of Student Life.
+        <br><br>
+        <button class="endpt" onclick="window.open('https://ulife.utoronto.ca/organizations/list','_blank')">Recognized Campus Groups</button><br><br> The Department of Student Life is focused on creating connections between the university and the surrounding
+        community.
+        <br><br>
+        <button class="endpt" onclick="window.open('http://utsc.utoronto.ca/studentlife/volunteer-community','_blank')">Learn more about the volunteer opportunities</button><br><br> The DSAs at UTSC are student-led organizations with a specific academic
+        focus. Every academic department at UTSC has a representing academic society that unites and enriches student life and allows them to participate in accomplishing a set of academic objectives. The DSAs primary objective is to provide useful services
+        to advocate for student interests including but not limited to accessibility and equitability of the academic culture at UTSC.
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.scsu.ca/partners/dsa/','_blank')">Departmental Student Associations</button><br><br>
+        <button class="endpt" onclick="window.open('https://ccr.utoronto.ca/home.htm','_blank')">Search through the Co-Curricular record for opportunities</button><br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/research-catalogue','_blank')">Browse the Research Catalogue to find an intriguing research endeavour!
+</button>
+    </div>
+
+    <div class="fc-card animated" id="CPer2I">
+        By systematically identifying academic and character strengths, the Flourish program will help you to learn effective stress management, improve your academic performance and boost your overall well-being.
+        <br><br><button class="endpt" onclick="window.open('https://www.utsc.utoronto.ca/projects/flourish/','_blank')">UTSC Flourish</button><br><br> The First Year Experience Program helps first year students connect to the campus community, ensuring
+        their success at the Scarborough campus.<br>By joining the First Year Experience Program and first year students will have the opportunity to connect with an upper year mentor in their field of study as well as other students, staff and faculty.<br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/studentlife/first-year-experience-program','_blank')">First Year Experience Program</button>
+        <br><br> Do you feel like your time management skills could use some improvement? Worried that your study skills are weak? Tired of cramming for exams and still not getting the marks you want? It's time to get into academic shape! Attend workshops
+        designed to focus on your weak areas and capitalize on your strengths.
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/academic-study-skills-workshops','_blank')">Academic Study Skills Workshops</button>
+        <br>
+        <br><br>Attend a study success session with a peer in AC321 to talk about study strategies to ace your test, time management tips, and effective reading + note-taking strategies
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/academic-advising-study-skills-appointments','_blank')">Study Success Sessions</button>
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/tip-sheets','_blank')">Tip sheets for academic and career success</button>
+    </div>
+
+    <div class="fc-card animated" id="CPer2J">
+        Access<span class="italics">Ability</span> provides services and academic accommodations to students who have a documented learning, physical, sensory, mental health disability or medical condition. These services cater to the individual, and
+        are tailored to the student’s individual needs.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/~ability/about_service.html','_blank')">Access<span class="italics">Ability</span> Services</button><br><br> The Health & Wellness Centre has health care providers
+        who provide medical, nursing, counselling, health promotion and education services to University of Toronto Scarborough students. You can access these services even if you’ve opted out of SCSU Health & Dental Insurance as long as you have other
+        health coverage, such as OHIP or UHIP!!
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/wellness/','_blank')">Health & Wellness</button><br><br>
+    </div>
+
+    <div class="fc-card animated" id="CPer2K">
+        The Health & Wellness Centre has health care providers who provide medical, nursing, counselling, health promotion and education services to University of Toronto Scarborough students. You can access these services even if you’ve opted out of SCSU Health
+        & Dental Insurance as long as you have other health coverage, such as OHIP or UHIP!!
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/hwc/health-services','_blank')">Health & Wellness Centre</button>
+    </div>
+
+    <div class="fc-card animated" id="CPer2L">
+        Are you specifically worried about the job hunt?
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/career-employment-workshops','_blank')">Career & Employment workshops</button>
+        <br><br><button class="endpt" onclick="window.open('http://50waystogetajob.com/','_blank')">50 ways to get a job!</button>
+        <br><br> Worried about Graduate school?
+        <br><br>
+        <button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/aacc/applying-professional-graduate-schools','_blank')">Resources to help you research and apply for further education
+</button>
+    </div>
+    <div class="fc-card animated" id="CPer2M">
+
+        Check out safe spaces like SC:OUT (BV334) and Women & Trans* Centre (SL224).
+        <br><br><button class="endpt" onclick="">SC:OUT (BV334)</button>
+        <br><br><button class="endpt" onclick="window.open('http://utscwtc.blogspot.ca/','_blank')">Women and Trans* Centre</button>
+        <br><br> The University of Toronto Scarborough Equity & Diversity Office (BV536) serves faculty, staff and students at UTSC. In cooperation with its campus partners, the EDO promotes an equitable and inclusive campus community, free from discrimination
+        or harassment.
+        <br><br><button class="endpt" onclick="window.open('http://www.utsc.utoronto.ca/edo/contact','_blank')">Equity & Diversity Office</button>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,fr,ko,ta,zh-CN'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
